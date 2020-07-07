@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-label-difflabel-corrected
+  labels:
+    app: nginx-lblerr--difflabel-corrected
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-test-corrected
+  template:
+    metadata:
+      labels:
+        app: nginx-test-corrected
+    spec:
+      containers:
+      - name: nginx-random-diff
+        image: nginx:1.15.4
+        ports:
+        - containerPort: 80
